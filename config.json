@@ -1,0 +1,29 @@
+{
+  "backend": {
+    "url": "http://localhost:9000"
+  },
+  "rules": [
+    {
+      "name": "per_ip_limit",
+      "algorithm": "fixed_window",
+      "limit": 7,
+      "window_seconds": 10,
+      "key_source": "ip"
+    },
+    {
+      "name": "per_user_limit",
+      "algorithm": "token_bucket",
+      "capacity": 5,
+      "refill_rate": 5,
+      "key_source": "header",
+      "header_name": "X-API-Key"
+    },
+    {
+      "name": "sliding_log_test",
+      "algorithm": "sliding_log",
+      "limit": 5,
+      "window_seconds": 10,
+      "key_source": "ip"
+    }
+  ]
+}
