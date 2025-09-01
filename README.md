@@ -56,5 +56,8 @@ Too Many Requests
 Too Many Requests
 ```
 
+## Class Diagram
+
+![Class Diagram](./assets/class-diagram.png)
 ## Acknowledgment
 This project was developed with help of the OpenAI ChatGPT-5 model.
