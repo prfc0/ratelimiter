@@ -24,6 +24,13 @@
       "limit": 5,
       "window_seconds": 10,
       "key_source": "ip"
+    },
+    {
+      "name": "sliding_counter_test",
+      "algorithm": "sliding_counter",
+      "limit": 3,
+      "window_seconds": 10,
+      "key_source": "ip"
     }
   ]
 }

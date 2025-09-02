@@ -21,7 +21,7 @@ func main() {
 	// Setup store (Redis)
 	redisStore := store.NewRedisStore("localhost:6379")
 
-	rule := cfg.Rules[2]
+	rule := cfg.Rules[3]
 	var rl limiter.RateLimiter
 
 	switch rule.Algorithm {
@@ -31,6 +31,8 @@ func main() {
 		rl = limiter.NewTokenBucket(redisStore, rule.Capacity, rule.RefillRate)
 	case "sliding_log":
 		rl = limiter.NewSlidingWindowLog(redisStore.Client(), rule.Limit, time.Duration(rule.WindowSeconds)*time.Second)
+	case "sliding_counter":
+		rl = limiter.NewSlidingWindowCounter(redisStore.Client(), rule.Limit, time.Duration(rule.WindowSeconds)*time.Second)
 	default:
 		log.Fatalf("unsupported algorithm: %s", rule.Algorithm)
 	}

@@ -1,7 +1,6 @@
 package proxy
 
 import (
-	"fmt"
 	"io"
 	"net"
 	"net/http"
@@ -40,7 +39,6 @@ func (p *Proxy) extractKey(r *http.Request) string {
 
 func (p *Proxy) Handler(w http.ResponseWriter, r *http.Request) {
 	clientKey := p.extractKey(r)
-	fmt.Println(clientKey)
 
 	// Check rate limit
 	allowed, err := p.rateLimiter.Allow(clientKey)
